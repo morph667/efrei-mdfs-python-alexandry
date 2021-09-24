@@ -2,6 +2,7 @@ import json
 
 class Book:
     current_id = 0
+    all_ids = []
 
     def __init__(self, name, book_type, genres, authors, year):
         self.id = self.current_id
@@ -11,11 +12,10 @@ class Book:
         self.genres = genres
         self.authors = authors
         self.year = year
-        allbooks.append(self)
+        self.all_ids.append
 
     def __init__(self, data):
         Book.readFromJson(self, data)
-        allbooks.append(self)
 
     def toArray(self):
         return [{"id": self.id,
@@ -43,9 +43,3 @@ class Book:
         self.genres = book_data["genres"]
         self.authors = book_data["authors"]
         self.year = book_data["year"]
-
-allbooks = []
-
-def readAllBooks(path):
-    with open(path, 'r') as file:
-        Book(file.read())

@@ -18,12 +18,12 @@ class Book:
         Book.readFromJson(self, data)
 
     def toArray(self):
-        return [{"id": self.id,
+        return {"id": self.id,
         "name": self.name,
         "type": self.book_type,
         "genres": self.genres,
         "authors": self.authors,
-        "year": self.year}]
+        "year": self.year}
 
     def writeToFile(self, path):
         with open(path, 'a') as file:

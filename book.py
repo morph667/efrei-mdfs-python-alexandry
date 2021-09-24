@@ -35,12 +35,3 @@ class Book:
                 self.authors = dct["authors"]
                 self.year = dct["year"]
                 return
-
-        
-
-book = Book("The Way of Kings", "Novel", ["Fantasy", "Epic"], ["Brandon Sanderson"], 2010)
-with open('test.json', 'r') as file:
-    book.updateFromJson(file.read())
-
-print(book.toArray())
-#book.writeToFile("test.json")

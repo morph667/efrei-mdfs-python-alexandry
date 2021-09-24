@@ -1,0 +1,20 @@
+[
+    {
+        "id":1,
+        "auteur":"Masashi KISHIMOTO",
+        "nom": "Naruto",
+        "tomes": 72
+    },
+    {
+        "id":2,
+        "auteur": "Akira TORIYAMA",
+        "nom": "Dragon Ball",
+        "tomes": 42
+    },
+    {
+        "id":5,
+        "auteur": "Tite Kubo",
+        "nom": "Bleach",
+        "tomes": 74
+    }
+]

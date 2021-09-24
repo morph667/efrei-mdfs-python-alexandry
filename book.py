@@ -36,12 +36,10 @@ class Book:
                 file.write("\n\t,")
             file.write(json.dumps(self.toArray(), sort_keys=True, indent=8))
 
-    def updateFromJson(self, data):
-        dct = json.loads(data)
-        for book in dct:
-            if book['id'] == self.id:
-                self.readFromJson(self, book)
-                return
+    def updateFromJson(self, book):
+        if str(book['id']) == str(self.id):
+            self.readFromJson(self, book)
+
 
     def readFromJson(self, book_data):
         self.id = book_data['id']

@@ -18,18 +18,20 @@
 
 ## 3-Exemple de format JSON attendu pour un livre :
 
-#### [
-####    {
-####        "authors": [
-####            "Sun Tzu"
-####        ],
-####        "genres": [
-####            "Military",
-####            "Classical litterature"
-####        ],
-####        "id": 1,
-####        "name": "The Art of War",
-####        "type": "Military Treatise",
-####        "year": -500
-####    }
-####]
+```json
+[
+    {
+        "authors": [
+            "Sun Tzu"
+        ],
+        "genres": [
+            "Military",
+            "Classical litterature"
+        ],
+        "id": 1,
+        "name": "The Art of War",
+        "type": "Military Treatise",
+        "year": -500
+    }
+]
+```

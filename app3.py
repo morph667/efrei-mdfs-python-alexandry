@@ -1,12 +1,16 @@
 from flask import Flask, render_template, jsonify, request
 import json, os
 from book import *
-
+from os.path import exists
 
 
 app = Flask(__name__)
 path = "./data.json"
+if not exists(path):
+    with open(path, 'w') as file:
+        file.write("[]")
 books = []
+
 
 def readBooks():
     global books
@@ -42,7 +46,10 @@ def getBook(id):
         
 @app.route('/api/post/book/')
 def setBook():
-    
+    if len(books) == 0:
+        with open(path, 'w') as file:
+            file.write("[]")
+
     with open(path, 'rb+') as filehandle:
         filehandle.seek(-1, os.SEEK_END)
         filehandle.truncate()

@@ -9,10 +9,12 @@ path = "./data.json"
 books = []
 
 def readBooks():
+    global books
+    books = []
     with open(path, "r") as file:
         data = file.read()
-        data = json.loads(data)
-        for b in data:
+        jsondata = json.loads(data)
+        for b in jsondata:
             books.append(Book(b))
             
 readBooks()
@@ -59,7 +61,8 @@ def setBook():
 
 @app.route('/api/delete/books/')
 def deleteAll():  
-    books=[]
+    global books
+    books = []
     with open(path, 'w') as file:
        file.write("[]")
     return "ok" 
@@ -83,55 +86,31 @@ def delete(id):
     
     with open(path, "a") as file:
         file.write("]")
-        
+    
+    readBooks()
     return "ok"
 
 @app.route('/api/update/book/')
-def update(): 
-            
+def update():
     data = json.loads(request.data)
     for elm in data:
-        id=elm["id"]
-    
         for b in books:
-            b.updateFromJson(elm)
-            print(b.authors)
-            print(elm["authors"])
-            break
-       
+            if b.updateFromJson(elm):
+                break
+    
     with open(path, 'w') as file:
         file.write("[")
     bAddComma=False
     for book in books:
         book.writeToFile(path, bAddComma)
         bAddComma=True
-    print(book)
     
     with open(path, "a") as file:
         file.write("]")
-
-    
-    readBooks()    
+    readBooks()
     return "ok"
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
 @app.route('/dashboard/')
 def dashboard():
     return render_template("dashboard.html")

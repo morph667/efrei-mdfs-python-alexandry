@@ -38,7 +38,9 @@ class Book:
 
     def updateFromJson(self, book):
         if str(book['id']) == str(self.id):
-            self.readFromJson(self, book)
+            self.readFromJson(book)
+            return True
+        return False
 
 
     def readFromJson(self, book_data):

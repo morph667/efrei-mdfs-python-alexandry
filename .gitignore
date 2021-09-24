@@ -1,2 +1,3 @@
 *.json
 __pycache__/
+./library_app/node_modules

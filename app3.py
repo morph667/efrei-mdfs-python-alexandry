@@ -24,29 +24,36 @@ def readBooks():
 readBooks()
 
 
-@app.route('/api/get/books/')
+@app.route('/api/get/books/', methods=['GET'])
 def getBooks():
     string = "" 
     for book in books:
         string += book.toString() + "<br>"
     print(string)
-    return string
+    with open(path, 'r')as file:
+        rslt=file.read()
+    return rslt
+    
 
-@app.route('/api/get/book/<id>')
+@app.route('/api/get/book/<id>', methods=['GET'])
 def getBook(id):
     string = "" 
-    
+    rslt="["
     for book in books:
         if str(book.id) == id:
             string += book.toString() + "<br>"
+            rslt += str(book.toArray()) + "\n"
     print(string)
-    return string
+    rslt+="]"
+    return rslt
         
         
         
-@app.route('/api/post/book/')
+@app.route('/api/post/book/', methods=['POST'])
 def setBook():
+    boolean=True
     if len(books) == 0:
+        boolean=False
         with open(path, 'w') as file:
             file.write("[]")
 
@@ -57,8 +64,9 @@ def setBook():
     data = json.loads(request.data)
     for i in data:
         book= Book(i)
-        book.writeToFile(path, True)
-        print(i) 
+        if not book:
+            book.writeToFile(path, boolean)
+         
         
     with open(path, "a") as file:
         file.write("\n]")
@@ -66,7 +74,7 @@ def setBook():
     readBooks()       
     return "ok"
 
-@app.route('/api/delete/books/')
+@app.route('/api/delete/books/', methods=['DELETE'])
 def deleteAll():  
     global books
     books = []
@@ -74,7 +82,7 @@ def deleteAll():
        file.write("[]")
     return "ok" 
  
-@app.route('/api/delete/book/<id>')
+@app.route('/api/delete/book/<id>', methods=['DELETE'])
 def delete(id):  
     cpt=0
     for b in books:
@@ -97,7 +105,7 @@ def delete(id):
     readBooks()
     return "ok"
 
-@app.route('/api/update/book/')
+@app.route('/api/update/book/', methods=['PUT'])
 def update():
     data = json.loads(request.data)
     for elm in data:

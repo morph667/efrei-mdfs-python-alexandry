@@ -5,8 +5,9 @@ class Book:
     all_ids = []
 
     def __init__(self, name, book_type, genres, authors, year):
+        while self.current_id in self.all_ids:
+            self.current_id += 1
         self.id = self.current_id
-        self.current_id += 1
         self.name = name
         self.book_type = book_type
         self.genres = genres
@@ -15,7 +16,11 @@ class Book:
         self.all_ids.append
 
     def __init__(self, data):
-        Book.readFromJson(self, data)
+        if data["id"] in self.all_ids:
+            msg = "Cannot create book: Id already taken."
+            print(msg)
+        else:
+            Book.readFromJson(self, data)
 
     def toArray(self):
         return {"id": self.id,

@@ -5,7 +5,7 @@ from book import *
 
 
 app = Flask(__name__)
-path="./data.json"
+path = "./data.json"
 books = []
 
 def readBooks():
@@ -22,7 +22,7 @@ readBooks()
 def getBooks():
     string = "" 
     for book in books:
-        string+= book.toString() + "<br>"
+        string += book.toString() + "<br>"
     print(string)
     return string
 
@@ -30,16 +30,9 @@ def getBooks():
 def getBook(id):
     string = "" 
     
-    with open(path, "r") as file:
-        data = file.read()
-        data = json.loads(data)
-        for b in data:
-            
-            if str(b["id"]) == id:  
-                books.append(Book(b))
-
     for book in books:
-        string+= book.toString() + "<br>"
+        if book.id == id:
+            string += book.toString() + "<br>"
     print(string)
     return string
         
@@ -48,12 +41,11 @@ def getBook(id):
 @app.route('/api/post/book/')
 def setBook():
     
-    
     with open(path, 'rb+') as filehandle:
         filehandle.seek(-1, os.SEEK_END)
         filehandle.truncate()
         
-    data= json.loads(request.data)
+    data = json.loads(request.data)
     for i in data:
         book= Book(i)
         book.writeToFile(path, True)

@@ -28,8 +28,8 @@ class Book:
     def writeToFile(self, path, addComma):
         with open(path, 'a') as file:
             if addComma:
-                file.write(",")
-            file.write(json.dumps(self.toArray(), sort_keys=True, indent=4))
+                file.write("\n\t,")
+            file.write(json.dumps(self.toArray(), sort_keys=True, indent=8))
 
     def updateFromJson(self, data):
         dct = json.loads(data)

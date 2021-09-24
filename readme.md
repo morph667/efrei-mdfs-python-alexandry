@@ -10,7 +10,7 @@
 ### http://localhost:5000/api/delete/book/{id}	Supprime un livre de la bibliothèque via l'id de celui ci (méthode DELETE) 
 ### http://localhost:5000/api/delete/books/		Supprime tous les livres (méthode DELETE)
 
-### 2-Auteurs :
+## 2-Auteurs :
 
 ### Barnabé CUVILLIERS
 ### Tom CHAMBOREDON
@@ -18,18 +18,18 @@
 
 ## 3-Exemple de format JSON attendu pour un livre :
 
-[
-    {
-        "authors": [
-            "Sun Tzu"
-        ],
-        "genres": [
-            "Military",
-            "Classical litterature"
-        ],
-        "id": 1,
-        "name": "The Art of War",
-        "type": "Military Treatise",
-        "year": -500
-    }
-]
+#### [
+####    {
+####        "authors": [
+####            "Sun Tzu"
+####        ],
+####        "genres": [
+####            "Military",
+####            "Classical litterature"
+####        ],
+####        "id": 1,
+####        "name": "The Art of War",
+####        "type": "Military Treatise",
+####        "year": -500
+####    }
+####]

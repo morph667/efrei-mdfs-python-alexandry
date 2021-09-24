@@ -43,3 +43,13 @@ class Book:
         self.genres = book_data["genres"]
         self.authors = book_data["authors"]
         self.year = book_data["year"]
+    
+    def toString(self):
+        result = ""
+        result += "id: " + str(self.id) + "\n"
+        result += "name: " + self.name + "\n"
+        result += "type: " + self.book_type + "\n"
+        result += "genres: " + str(self.genres) + "\n"
+        result += "authors: " + str(self.authors) + "\n"
+        result += "year: " + str(self.year) + "\n"
+        return result
